@@ -58,7 +58,7 @@ class InformationWorker(object):
                     if local_info is None or local_info.version.users_version < remote_info.version.users_version:
                         api_result = api_client.get_users()
 
-                        if not api_result.is_.ok():
+                        if not api_result.is_ok():
                             continue
 
                         def tran(_):
