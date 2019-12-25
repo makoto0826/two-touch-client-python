@@ -1,0 +1,132 @@
+#: import get_color_from_hex kivy.utils.get_color_from_hex
+
+ScreenManager:
+    NfcScreen:
+    SelectScreen:
+
+<NfcScreen>:
+    name : root.name
+
+    canvas:
+        Color:
+            rgb: get_color_from_hex("#d5d5d5")
+        Rectangle
+            size:self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: .9, .4
+        pos_hint: {'center_x': .5, 'center_y': .5}
+
+        DefaultLabel:
+            id: label1
+            text:root.date
+    
+        DefaultLabel:
+            id: label2
+            font_size: 68/2 
+            text:root.time
+
+        DefaultLabel:
+            id: label3
+            text: 'タッチしてください' 
+
+<SelectScreen>:
+    name : root.name
+
+    canvas:
+        Color:
+            rgb: get_color_from_hex("#d5d5d5")
+        Rectangle
+            size:self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 1,.1
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 1,.4
+
+            DefaultLabel:
+                id: label2
+                text:root.date
+    
+            DefaultLabel:
+                id: label3
+                font_size: 68/2 
+                text:root.time
+    
+
+        GridLayout:
+            size_hint: .9, .9
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            spacing:16,16
+            padding:16,16
+            rows:2
+            cols:2
+
+            PrimaryButton:
+                id: button1
+                text: "出勤"
+                on_press:root.handle_in_click()
+
+            DangerButton:
+                id: button2
+                text: '退勤'
+                on_press:root.handle_out_click()
+
+            PrimaryButton:
+                id: button3
+                text: "外出"
+                font_family:"bold"
+                on_press:root.handle_go_out_out_click()
+
+            DangerButton:
+                id: button4
+                text: '戻り'
+                on_press:root.handle_go_out_in_click()
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 1,.1
+
+
+<DefaultLabel@Label>:
+    font_size: 68 
+    color: get_color_from_hex("#000000")
+
+
+<PrimaryButton@Button>:
+    font_size:68
+    background_normal: ''
+    background_down: ''
+    background_color: get_color_from_hex("#2D67C6")
+    on_press: self.background_color = get_color_from_hex("#285CB0")
+    on_release: self.background_color = get_color_from_hex("#2D67C6")
+        
+    canvas.before:
+        Color:
+            rgba: get_color_from_hex("#285CB0")
+        Line:
+            width: 4 
+            rectangle: self.x, self.y, self.width, self.height
+
+
+<DangerButton@Button>:
+    font_size:68
+    background_normal: ''
+    background_down: ''
+    background_color: get_color_from_hex("#C23853")
+    on_press: self.background_color = get_color_from_hex("#AE324A")
+    on_release: self.background_color = get_color_from_hex("#D83F5D")
+        
+    canvas.before:
+        Color:
+            rgba: get_color_from_hex("#C23853")
+        Line:
+            width: 4
+            rectangle: self.x, self.y, self.width, self.height
