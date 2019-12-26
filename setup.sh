@@ -35,7 +35,12 @@ function set_rc_s380(){
 }
 
 function set_api_json() {
-   readonly API_FILE_PATH="./data/api.json"
+   readonly API_PATH="./data"
+   readonly API_FILE_PATH="${API_PATH}/api.json"
+
+   if [ ! -d $API_PATH ]; then
+      mkdir $API_PATH
+   fi
 
    if [ -f $API_FILE_PATH ]; then
       rm -f $API_FILE_PATH
