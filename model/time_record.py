@@ -9,8 +9,9 @@ GO_OUT_IN = '7'
 GO_OUT_OUT = '8'
 
 NONE_STATUS = '1'
-SENT_STATUS = '2'
-NOT_FOUND_STATUS = '5'
+OK_STATUS = '2'
+REQ_ERROR_STATUS = '3'
+AUTH_ERROR_STATUS = '4'
 
 ja = get_localzone()
 
@@ -36,11 +37,14 @@ class TimeRecord(object):
             'registeredAt': self.registered_at.isoformat()
         }).encode('utf-8')
 
-    def change_sent_status(self):
-        self.status = SENT_STATUS
+    def change_ok_status(self):
+        self.status = OK_STATUS
 
-    def change_not_found_status(self):
-        self.status = NOT_FOUND_STATUS
+    def change_req_error_status(self):
+        self.status = REQ_ERROR_STATUS
+
+    def change_auth_error_status(self):
+        self.status = AUTH_ERROR_STATUS
 
     @staticmethod
     def create_with_in(user):

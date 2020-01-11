@@ -8,10 +8,6 @@ import urllib.request
 
 logger = getLogger(__name__)
 
-ADD_RECORD_STATUS_OK = '1',
-ADD_RECORD_STATUS_USER_NOT_FOUND = '5'
-
-
 class ApiClient(object):
     def __init__(self, options):
         self._options = options
@@ -68,9 +64,10 @@ class ApiClient(object):
                 self._options.add_time_record_url, data=body, method=method, headers=headers)
 
             with urllib.request.urlopen(req) as res:
-                body = res.read()
-                return AddUserRecordResult.from_json(body)
+                return ApiResult(res.code)
 
+        except urllib.error.HTTPError as ex:
+            return ApiResult(ex.code)
         except Exception as ex:
             logger.error(ex)
             raise ex
@@ -94,20 +91,11 @@ class ApiResult(object):
     def is_ok(self):
         return self.code == 200
 
+    def is_req_error(self):
+        return self.code == 400
 
-class AddUserRecordResult(object):
-
-    def __init__(self, status):
-        self.status = status
-
-    def is_ok(self):
-        return self.status == ADD_RECORD_STATUS_OK
-
-    def is_not_found(self):
-        return self.status == ADD_RECORD_STATUS_USER_NOT_FOUND
-
-    @staticmethod
-    def from_json(data):
-        json_data = json.loads(data)
-
-        return AddUserRecordResult(json_data['status'])
+    def is_auth_error(self):
+        return self.code == 401
+    
+    def is_server_error(self):
+        return self.code == 500

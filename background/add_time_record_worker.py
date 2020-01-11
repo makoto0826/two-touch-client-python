@@ -12,7 +12,7 @@ logger = getLogger(__name__)
 class AddTimeRecordWorker(object):
     _instance = None
 
-    def __init__(self,wait=10):
+    def __init__(self, wait=10):
         self._thread = None
         self._wait = wait
         self._running = False
@@ -50,10 +50,11 @@ class AddTimeRecordWorker(object):
                             result = api_client.add_time_record(record)
 
                             if result.is_ok():
-                                record.change_sent_status()
-
-                            if result.is_not_found():
-                                record.change_not_found_status()
+                                record.change_ok_status()
+                            elif result.is_req_error():
+                                record.change_req_error_status()
+                            elif result.is_auth_error():
+                                record.change_auth_error_status()
 
                             repo.update_status(record)
 
