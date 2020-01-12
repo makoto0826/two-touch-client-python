@@ -43,8 +43,8 @@ class NfcScreen(Screen):
         now = datetime.now()
         day = WEEKS[now.isoweekday() - 1]
 
-        self.date = now.strftime("%m月%d日(" + day + ")")
-        self.time = now.strftime("%H:%M:%S")
+        self.date = now.strftime("%Y年%m月%d日(" + day + ")")
+        self.time = now.strftime("%H時%M分%S秒")
 
     def _get_id_callback(self, card_id):
         logger.info('card_id:' + card_id)

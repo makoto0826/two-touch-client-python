@@ -92,8 +92,8 @@ class SelectScreen(Screen):
         now = datetime.now()
         day = WEEKS[now.isoweekday() -1]
 
-        self.date = now.strftime("%m月%d日(" + day + ")")
-        self.time = now.strftime("%H:%M:%S")
+        self.date = now.strftime("%Y年%m月%d日(" + day + ")")
+        self.time = now.strftime("%H時%M分%S秒")
 
     def _add_time_record(self, record):
         with db.create_db_session() as session:

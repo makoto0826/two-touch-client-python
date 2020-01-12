@@ -1,17 +1,36 @@
 #: import get_color_from_hex kivy.utils.get_color_from_hex
 
-ScreenManager:
-    NfcScreen:
-    SelectScreen:
+<ScreenContainer>:
+    orientation: 'vertical'
+
+    canvas.before:
+        Color:
+            rgb: get_color_from_hex("#d5d5d5")
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    ActionBar:
+        ActionView:
+            canvas.before:
+                Color:
+                    rgb: get_color_from_hex("#cccccc")
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            ActionPrevious:
+                title: '' 
+                with_previous: False
+                app_icon: ''
+                app_icon_width: 0
+                app_icon_height: 0
+
+    ScreenManager:
+        NfcScreen:
+        SelectScreen:
 
 <NfcScreen>:
     name : root.name
-
-    canvas:
-        Color:
-            rgb: get_color_from_hex("#d5d5d5")
-        Rectangle
-            size:self.size
 
     BoxLayout:
         orientation: 'vertical'
@@ -29,16 +48,10 @@ ScreenManager:
 
         DefaultLabel:
             id: label3
-            text: 'タッチしてください' 
+            text: '社員証タッチしてください' 
 
 <SelectScreen>:
     name : root.name
-
-    canvas:
-        Color:
-            rgb: get_color_from_hex("#d5d5d5")
-        Rectangle
-            size:self.size
 
     BoxLayout:
         orientation: 'vertical'
@@ -59,7 +72,6 @@ ScreenManager:
                 id: label3
                 font_size: 68/2 
                 text:root.time
-    
 
         GridLayout:
             size_hint: .9, .9
@@ -82,7 +94,6 @@ ScreenManager:
             PrimaryButton:
                 id: button3
                 text: "外出"
-                font_family:"bold"
                 on_press:root.handle_go_out_out_click()
 
             DangerButton:
