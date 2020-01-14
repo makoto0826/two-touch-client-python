@@ -10,24 +10,9 @@
             pos: self.pos
             size: self.size
 
-    ActionBar:
-        ActionView:
-            canvas.before:
-                Color:
-                    rgb: get_color_from_hex("#cccccc")
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
-            ActionPrevious:
-                title: '' 
-                with_previous: False
-                app_icon: ''
-                app_icon_width: 0
-                app_icon_height: 0
-
     ScreenManager:
-        NfcScreen:
         SelectScreen:
+        NfcScreen:
 
 <NfcScreen>:
     name : root.name
@@ -52,6 +37,13 @@
 
 <SelectScreen>:
     name : root.name
+
+    FloatLayout:
+        Button:
+            text: "戻る"
+            size_hint: .1, .1
+            pos_hint: {"x":.01, "top":.99}
+            on_press:root.handle_back_click()
 
     BoxLayout:
         orientation: 'vertical'
@@ -94,12 +86,12 @@
             PrimaryButton:
                 id: button3
                 text: "外出"
-                on_press:root.handle_go_out_out_click()
+                on_press:root.handle_go_out_click()
 
             DangerButton:
                 id: button4
                 text: '戻り'
-                on_press:root.handle_go_out_in_click()
+                on_press:root.handle_go_out_back_click()
 
         BoxLayout:
             orientation: 'vertical'
@@ -109,7 +101,6 @@
 <DefaultLabel@Label>:
     font_size: 68 
     color: get_color_from_hex("#000000")
-
 
 <PrimaryButton@Button>:
     font_size:68

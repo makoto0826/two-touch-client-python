@@ -24,3 +24,5 @@ class TwoTouchApp(App):
         InformationWorker.get_instance().stop()
         AddTimeRecordWorker.get_instance().stop()
         NfcReceiver.get_instance().close()
+
+japanize_kivy.show_license()

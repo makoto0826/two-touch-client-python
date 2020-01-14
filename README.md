@@ -66,4 +66,6 @@ sudo systemctl stop two-touch
 sudo systemctl disable two-touch
 ```
 
-
+# 謝辞
+- [効果音ラボ](https://soundeffect-lab.info/sound/anime/)
+- [IPA](https://www.ipa.go.jp/)

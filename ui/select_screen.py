@@ -36,6 +36,10 @@ class SelectScreen(Screen):
         self._event.cancel()
         self._event = None
 
+    def handle_back_click(self):
+        self.manager.current = NFC_SCREEN_NAME
+        self.user = None
+
     def handle_in_click(self):
         self.manager.current = NFC_SCREEN_NAME
         record = TimeRecord.create_with_in(self.user)
@@ -52,17 +56,17 @@ class SelectScreen(Screen):
 
         out_sound.play()
 
-    def handle_go_out_in_click(self):
+    def handle_go_out_click(self):
         self.manager.current = NFC_SCREEN_NAME
-        record = TimeRecord.create_with_go_out_in(self.user)
+        record = TimeRecord.create_with_go_out(self.user)
         self._add_time_record(record)
         self.user = None
 
         in_sound.play()
 
-    def handle_go_out_out_click(self):
+    def handle_go_out_back_click(self):
         self.manager.current = NFC_SCREEN_NAME
-        record = TimeRecord.create_with_go_out_out(self.user)
+        record = TimeRecord.create_with_go_out_back(self.user)
         self._add_time_record(record)
         self.user = None
 

@@ -5,8 +5,8 @@ import json
 
 IN_TYPE = '1'
 OUT_TYPE = '2'
-GO_OUT_IN = '7'
-GO_OUT_OUT = '8'
+GO_OUT_TYPE = '7'
+GO_OUT_BACK_TYPE = '8'
 
 NONE_STATUS = '1'
 OK_STATUS = '2'
@@ -61,16 +61,16 @@ class TimeRecord(object):
         return record
 
     @staticmethod
-    def create_with_go_out_in(user):
+    def create_with_go_out(user):
         record = TimeRecord._create(user)
-        record.type = GO_OUT_IN
+        record.type = GO_OUT_TYPE
 
         return record
 
     @staticmethod
-    def create_with_go_out_out(user):
+    def create_with_go_out_back(user):
         record = TimeRecord._create(user)
-        record.type = GO_OUT_OUT
+        record.type = GO_OUT_BACK_TYPE
 
         return record
 
