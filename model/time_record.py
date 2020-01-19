@@ -5,6 +5,8 @@ import json
 
 IN_TYPE = '1'
 OUT_TYPE = '2'
+START_BREAK_TYPE = '3'
+END_BREAK_TYPE = '4'
 GO_OUT_TYPE = '7'
 GO_OUT_BACK_TYPE = '8'
 
@@ -57,6 +59,20 @@ class TimeRecord(object):
     def create_with_out(user):
         record = TimeRecord._create(user)
         record.type = OUT_TYPE
+
+        return record
+
+    @staticmethod
+    def create_with_start_break(user):
+        record = TimeRecord._create(user)
+        record.type = START_BREAK_TYPE
+
+        return record
+
+    @staticmethod
+    def create_with_end_break(user):
+        record = TimeRecord._create(user)
+        record.type = END_BREAK_TYPE
 
         return record
 

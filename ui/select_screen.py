@@ -56,6 +56,22 @@ class SelectScreen(Screen):
 
         out_sound.play()
 
+    def handle_start_break_click(self):
+        self.manager.current = NFC_SCREEN_NAME
+        record = TimeRecord.create_with_start_break(self.user)
+        self._add_time_record(record)
+        self.user = None
+
+        in_sound.play()
+
+    def handle_end_break_click(self):
+        self.manager.current = NFC_SCREEN_NAME
+        record = TimeRecord.create_with_end_break(self.user)
+        self._add_time_record(record)
+        self.user = None
+
+        out_sound.play()
+
     def handle_go_out_click(self):
         self.manager.current = NFC_SCREEN_NAME
         record = TimeRecord.create_with_go_out(self.user)
@@ -72,29 +88,13 @@ class SelectScreen(Screen):
 
         out_sound.play()
 
-    def handle_go_out_in_click(self):
-        self.manager.current = NFC_SCREEN_NAME
-        record = TimeRecord.create_with_go_out_in(self.user)
-        self._add_time_record(record)
-        self.user = None
-
-        in_sound.play()
-
-    def handle_go_out_out_click(self):
-        self.manager.current = NFC_SCREEN_NAME
-        record = TimeRecord.create_with_go_out_out(self.user)
-        self._add_time_record(record)
-        self.user = None
-
-        out_sound.play()
-
     def handle_cancel_click(self):
         self.manager.current = NFC_SCREEN_NAME
         self.user = None
 
     def _timer_callback(self, dt):
         now = datetime.now()
-        day = WEEKS[now.isoweekday() -1]
+        day = WEEKS[now.isoweekday() - 1]
 
         self.date = now.strftime("%Y年%m月%d日(" + day + ")")
         self.time = now.strftime("%H時%M分%S秒")

@@ -11,8 +11,8 @@
             size: self.size
 
     ScreenManager:
-        SelectScreen:
         NfcScreen:
+        SelectScreen:
 
 <NfcScreen>:
     name : root.name
@@ -85,13 +85,13 @@
 
             PrimaryButton:
                 id: button3
-                text: "外出"
-                on_press:root.handle_go_out_click()
+                text: "休憩開始"
+                on_press:root.handle_start_break_click()
 
             DangerButton:
                 id: button4
-                text: '戻り'
-                on_press:root.handle_go_out_back_click()
+                text: '休憩終了'
+                on_press:root.handle_end_break_click()
 
         BoxLayout:
             orientation: 'vertical'
