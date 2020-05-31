@@ -1,7 +1,7 @@
 # Python アプリケーション
 
 # 概要
-Raspberry PI 3 Model B+で動作するタイムレコーダーアプリケーションになります。
+Raspberry PI 3 Model B+で動作するKing Of Timeのタイムレコーダーアプリケーションになります。
 
 # 必要な機器
 - Sony PaSoRi RC-S380
